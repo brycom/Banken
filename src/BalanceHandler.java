@@ -1,42 +1,46 @@
 public class BalanceHandler {
-    double balance;
+    Customer customer;
     double addToBalance;
     Boolean direction;
     boolean maxWithdrawal;
 
-    BalanceHandler(double balance, double addToBalance) {
-        this.balance = balance;
+    BalanceHandler(Customer customer, double addToBalance) {
+        this.customer = customer;
         this.addToBalance = addToBalance;
     }
 
-    double chanceBalance() {
+    public void chanceBalance(Customer cust) {
         if (direction == true) {
-            this.balance += addToBalance;
-            System.out.println("inre balans" + balance);
+            this.customer.balance += addToBalance;
+            System.out.println("changebalance  add" + customer.getFirstName());
         } else if (direction == false && maxWithdrawal == true) {
-            balance -= addToBalance;
-            System.out.println("inre balans" + balance);
+            customer.balance -= addToBalance;
+            System.out.println("changebalance Withdraw" + customer);
         } else
             System.out.println("you cant Withdraw mor then you have on your account");
-        return balance;
+
     }
 
     boolean depositWithdrawal(String directionInput) {
-        if (directionInput.equals("+")) {
-            direction = true;
+        boolean run = true;
+        while (run) {
+            if (directionInput.equals("+")) {
+                direction = true;
+                run = false;
 
-        } else if (directionInput.equals("-")) {
-            direction = false;
+            } else if (directionInput.equals("-")) {
+                direction = false;
+                run = false;
 
-        } else
-            System.out.println("pleas input + for deposit or - for withdrawal");
-
+            } else
+                System.out.println("pleas input + for deposit or - for withdrawal");
+        }
         return direction;
 
     }
 
     boolean checkMaxWithdrawal() {
-        if (balance > addToBalance) {
+        if (customer.balance > addToBalance) {
             maxWithdrawal = true;
         } else
             maxWithdrawal = false;

@@ -10,4 +10,19 @@ public class Customer {
         this.balance = balance;
     }
 
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
 }
