@@ -1,18 +1,33 @@
-## Getting Started
+simpel bank app där du kan välja ett konto. Se saldot på kontot, sätta in eller taut pengar från kontot.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+classer:
 
-## Folder Structure
+  app:
+    mainfunktion.
 
-The workspace contains two folders by default, where:
+  Customer:
+    construktor för dom individuella kunderna. samt get och sets.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+  CustomerHandler:
+    en arraylist med alla individuella kunder i.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+  BalanceHandler:
+    chanceBalans:
+      tar in om du ska sätta in eller ta ut genom variablen direction
+      tar in vem kunden är från 
+      om du ska ta ut pengar kollas även så att du inte tar ut mer en du har via metoden maxWIthdral
+      lägger till eller ta bort pengar från det individuella kontots balance.
+  
+  depositWithdral:
+      tar in om du ska sätta in eller ta ut via en direction från classen RunFlow (chanceBalanceInputs)
+  
+  checkMaxWithdral:
+      kollar så du inte försöker ta ut mer än det finns på personens balance.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+RunFlow:
+  selectCustomer:
+  chancheBalanceInputs:
+  restart:
+  menu:
+  
