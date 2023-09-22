@@ -1,3 +1,4 @@
+//Sätter in och tar ut från rätt konto samt kontrolerar max utag.
 public class BalanceHandler {
     Customer customer;
     double addToBalance;
@@ -9,18 +10,20 @@ public class BalanceHandler {
         this.addToBalance = addToBalance;
     }
 
-    public void chanceBalance(Customer cust) {
-        if (direction == true) {
+    // Tar in rikting från depositWithdral och sätter in eller tar ut pengar från
+    // kontot
+    public void chanceBalance(Customer cust, String direction) {
+        if (direction.equals("+")) {
             this.customer.balance += addToBalance;
-            System.out.println("changebalance  add" + customer.getFirstName());
-        } else if (direction == false && maxWithdrawal == true) {
+        } else if (direction.equals("-") && maxWithdrawal == true) {
             customer.balance -= addToBalance;
-            System.out.println("changebalance Withdraw" + customer);
+
         } else
             System.out.println("you cant Withdraw mor then you have on your account");
 
     }
 
+    // tar in riktning från RunFlow(chanceBalanceInputs) och konverterar till bool.
     boolean depositWithdrawal(String directionInput) {
         boolean run = true;
         while (run) {
@@ -31,16 +34,14 @@ public class BalanceHandler {
             } else if (directionInput.equals("-")) {
                 direction = false;
                 run = false;
-
-            } else
-                System.out.println("pleas input + for deposit or - for withdrawal");
+            }
         }
         return direction;
 
     }
 
     boolean checkMaxWithdrawal() {
-        if (customer.balance > addToBalance) {
+        if (customer.balance >= addToBalance) {
             maxWithdrawal = true;
         } else
             maxWithdrawal = false;

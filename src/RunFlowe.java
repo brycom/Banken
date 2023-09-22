@@ -1,48 +1,66 @@
+
 import java.util.Scanner;
 
+//Inputtmetoder och menyer.
 public class RunFlowe {
     boolean run = true;
     boolean restart = true;
     Scanner myScanner = new Scanner(System.in);
-    int accountNumber;
+    int accountNumber = -1;
     public static CustomerHandler account = new CustomerHandler();
     public static Customer customer;
 
+    // Tar in ett kontonummer och väljer rätt konto från arraylisten på
+    // CustomerHandler.
     public void selectCustomer() {
-        /* CustomerHandler accountHandler = new CustomerHandler(); */
-        System.out.println("whose account do you want to access:" + System.lineSeparator() +
-                "Mathias: 1" + System.lineSeparator() +
-                "Jenny: 2" + System.lineSeparator() +
-                "Roger: 3" + System.lineSeparator() +
-                "Asterix: 4" + System.lineSeparator() +
-                "Obelix: 5" + System.lineSeparator() +
-                "Input the account number:");
-        accountNumber = myScanner.nextInt() - 1;
-        myScanner.nextLine();
+        while (accountNumber < 0 || accountNumber > 5) {
+            System.out.println("whose account do you want to access:");
+            account.customerpresenter();
+            System.out.println("Input the account number:");
+            accountNumber = myScanner.nextInt() - 1;
+            myScanner.nextLine();
+            if (accountNumber < 0 || accountNumber >= account.getCustomerSize()) {
+                System.out.println("Pleas use a valid accountnumber.");
+                accountNumber = -1;
+                continue;
 
-        customer = account.getCustomer(accountNumber);
+            } else
+                customer = account.getCustomer(accountNumber);
+        }
 
     }
 
+    // Tar in riktning och summa som ska sättas in eller tas ut och kör metoderna
+    // från BalanceHandler.
     public void chanceBalanceInputs() {
-        System.out.println("Are you deposit or withdrawing use (+ or -) ");
-        String direction = myScanner.nextLine();
+        boolean lopBool = true;
+        while (lopBool) {
+            System.out.println("Are you deposit or withdrawing use (+ or -) ");
+            String direction = myScanner.nextLine();
+            if (!(direction.equals("+") || direction.equals("-"))) {
+                System.out.println("pleas input + or -");
+                continue;
+            }
 
-        System.out.println("The amount: ");
-        double amount = myScanner.nextDouble();
-        myScanner.nextLine();
+            System.out.println("The amount: ");
+            double amount = myScanner.nextDouble();
+            myScanner.nextLine();
 
-        BalanceHandler balanceAccount = new BalanceHandler(account.getCustomer(accountNumber), amount);
+            BalanceHandler balanceAccount = new BalanceHandler(account.getCustomer(accountNumber), amount);
+            if (direction.equals("-")) {
+                balanceAccount.checkMaxWithdrawal();
+            }
+            // balanceAccount.depositWithdrawal(direction);
+            balanceAccount.chanceBalance(customer, direction);
 
-        balanceAccount.checkMaxWithdrawal();
+            System.out.println("You have: " + account.getCustomer(accountNumber).balance + "kr on your account.");
+            lopBool = false;
 
-        balanceAccount.depositWithdrawal(direction);
-        balanceAccount.chanceBalance(customer);
-
-        System.out.println("You now have: " + account.getCustomer(accountNumber).balance + "kr on your account.");
+        }
 
     }
 
+    // Metod för att starta om menyn.
     void restart() {
         while (restart) {
             System.out.println("Do you want to try again?");
@@ -61,12 +79,14 @@ public class RunFlowe {
 
     }
 
+    // Meny val när kontot har valts
     public void menu() {
         while (run) {
             System.out.println("How can i help you today?" + System.lineSeparator() +
-                    "input 1 to se your balance" + System.lineSeparator() +
-                    "input 2 to deposit or withdrawing" + System.lineSeparator() +
-                    "input 3 to cancel");
+                    "Se your balance: 1" + System.lineSeparator() +
+                    "Deposit or withdrawing: 2" + System.lineSeparator() +
+                    "Cancel: 3" + System.lineSeparator() +
+                    "Chance account: 4");
             int action = myScanner.nextInt();
             myScanner.nextLine();
             switch (action) {
@@ -80,7 +100,6 @@ public class RunFlowe {
                         continue;
 
                 case 2:
-                    System.out.println("blööööööööööö");
                     chanceBalanceInputs();
                     restart();
                     if (run == false) {
@@ -88,8 +107,11 @@ public class RunFlowe {
                     } else
                         continue;
                 case 3:
-                    System.out.println("nejnejnejnej");
                     run = false;
+                    break;
+                case 4:
+                    accountNumber = -1;
+                    selectCustomer();
 
             }
 

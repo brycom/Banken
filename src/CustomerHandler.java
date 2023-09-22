@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// Arraylist med dom olika tilgängliga kontona, get metoder och metoden som presenterar dom tilgängliga metoderna i RunFlow(selectCustomer).
 public class CustomerHandler {
     ArrayList<Customer> customerArr = new ArrayList<>();
 
@@ -17,6 +18,19 @@ public class CustomerHandler {
 
     public Customer getCustomer(int index) {
         return customerArr.get(index);
+    }
+
+    public int getCustomerSize() {
+        int aarSize = customerArr.size();
+        return aarSize;
+    }
+
+    public void customerpresenter() {
+        for (Customer acc : customerArr) {
+            int indexarr = customerArr.indexOf(acc);
+            indexarr += 1;
+            System.out.println((acc.firstName + ": " + indexarr));
+        }
     }
 
 }
