@@ -6,18 +6,22 @@ public class CustomerHandler {
 
     public CustomerHandler() {
 
-        // Customer[] customerArr;
-
-        customerArr.add(new Customer("Mathias", "Brynolf", 154.50));
-        customerArr.add(new Customer("Jenny ", "Hellqist", 2650.0));
-        customerArr.add(new Customer("Roger", "Pontare", 2.50));
-        customerArr.add(new Customer("Asterix", "Den lille", 7483.99));
-        customerArr.add(new Customer("Obelix", "Den stora", 1487.30));
+        customerArr.add(new Customer("Mathias", "Brynolf", 154.50f));
+        customerArr.add(new Customer("Jenny ", "Hellqist", 2650.10f));
+        customerArr.add(new Customer("Roger", "Pontare", 2.50f));
+        customerArr.add(new Customer("Asterix", "Den lille", 7483.99f));
+        customerArr.add(new Customer("Obelix", "Den stora", 1487.30f));
 
     }
 
     public Customer getCustomer(int index) {
         return customerArr.get(index);
+    }
+
+    public String getCustomerbalansAsString(int index) {
+        float balanceFloat = customerArr.get(index).balance;
+        String balancString = String.format("%.2f", balanceFloat);
+        return balancString;
     }
 
     public int getCustomerSize() {

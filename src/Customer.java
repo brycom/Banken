@@ -1,10 +1,11 @@
 
+//konstruktor för konton samt get och set metoder
 public class Customer {
     String firstName;
     String lastName;
-    double balance;
+    float balance;
 
-    public Customer(String firstName, String lastName, double balance) {
+    public Customer(String firstName, String lastName, float balance) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.balance = balance;
@@ -18,7 +19,7 @@ public class Customer {
         this.firstName = firstname;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
