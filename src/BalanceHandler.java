@@ -10,7 +10,7 @@ public class BalanceHandler {
         this.addToBalance = addToBalance;
     }
 
-    // Tar in rikting från RunFlow(chanceBalanceInputs) och sätter in eller tar ut
+    // Tar in rikting från RunFlow(menu) och sätter in eller tar ut
     // pengar från kontot.
     public void chanceBalance(Customer cust, String direction) {
         if (direction.equals("+")) {
@@ -19,7 +19,7 @@ public class BalanceHandler {
             customer.balance -= addToBalance;
 
         } else
-            System.out.println("you cant Withdraw mor then you have on your account");
+            System.out.println("You cant Withdraw mor then you have on your account");
 
     }
 

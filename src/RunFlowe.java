@@ -24,7 +24,7 @@ public class RunFlowe {
     // CustomerHandler.
     public void selectCustomer() {
         while (accountNumber < 0 || accountNumber > account.getCustomerSize()) {
-            System.out.println("whose account do you want to access:");
+            System.out.println("Whose account do you want to access:");
             account.customerpresenter();
             System.out.println("Input the account number:");
             onlyInt();
@@ -73,7 +73,7 @@ public class RunFlowe {
     // Metod för att starta om menyn.
     void restart() {
         while (restart) {
-            System.out.println("do you want to do something more?");
+            System.out.println("Do you want to do something more?");
             String reRun = myScanner.nextLine();
             if (reRun.equals("yes")) {
                 break;
@@ -83,7 +83,7 @@ public class RunFlowe {
                 break;
 
             } else
-                System.out.println("pleas say yes or no");
+                System.out.println("Pleas say yes or no");
 
         }
 
